@@ -53,14 +53,18 @@ public class Clock extends JPanel implements Runnable{
                             labels.get(2).setNumber(0);
                             if (labels.get(1).getNumber() == 9) {
                                 labels.get(1).setNumber(0);
-                                if (labels.get(0).getNumber() == 2 && labels.get(1).getNumber() == 3) {
-                                    labels.get(0).setNumber(0);
-                                    labels.get(1).setNumber(0);
-                                } else {
-                                    labels.get(0).setNumber(labels.get(0).getNumber() + 1);
-                                }
+//                                if (labels.get(0).getNumber() == 2 && labels.get(1).getNumber() == 3) {
+//                                    labels.get(0).setNumber(0);
+//                                    labels.get(1).setNumber(0);
+//                                } else {
+//                                    labels.get(0).setNumber(labels.get(0).getNumber() + 1);
+//                                }
                             } else {
                                 labels.get(1).setNumber(labels.get(1).getNumber() + 1);
+                            }
+                            if(labels.get(0).getNumber() == 2 && labels.get(1).getNumber() == 4){
+                                labels.get(0).setNumber(0);
+                                labels.get(1).setNumber(0);
                             }
                         } else {
                             labels.get(2).setNumber(labels.get(2).getNumber() + 1);
