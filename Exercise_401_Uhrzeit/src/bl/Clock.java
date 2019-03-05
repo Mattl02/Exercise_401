@@ -2,6 +2,7 @@
 package bl;
 
 import java.awt.GridLayout;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,12 +19,26 @@ public class Clock extends JPanel implements Runnable{
     public Clock() {
         this.setLayout(new GridLayout(1,6));
         
-        labels.add(new SevenSegmentLabel(2));
-        labels.add(new SevenSegmentLabel(3));
-        labels.add(new SevenSegmentLabel(5));
-        labels.add(new SevenSegmentLabel(9));
-        labels.add(new SevenSegmentLabel(5));
-        labels.add(new SevenSegmentLabel(6));
+        labels.add(new SevenSegmentLabel(0));
+        labels.add(new SevenSegmentLabel(0));
+        labels.add(new SevenSegmentLabel(0));
+        labels.add(new SevenSegmentLabel(0));
+        labels.add(new SevenSegmentLabel(0));
+        labels.add(new SevenSegmentLabel(0));
+        
+        for (SevenSegmentLabel label : labels) {
+            this.add(label);
+        }
+    }
+    
+    public Clock(LocalTime time){
+        this.setLayout(new GridLayout(1,6));
+        labels.add(new SevenSegmentLabel(time.getHour()/10));
+        labels.add(new SevenSegmentLabel(time.getHour()%10));
+        labels.add(new SevenSegmentLabel(time.getMinute()/10));
+        labels.add(new SevenSegmentLabel(time.getMinute()%10));
+        labels.add(new SevenSegmentLabel(time.getSecond()/10));
+        labels.add(new SevenSegmentLabel(time.getSecond()%10));
         
         for (SevenSegmentLabel label : labels) {
             this.add(label);

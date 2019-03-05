@@ -8,6 +8,7 @@ package gui;
 import bl.Clock;
 import bl.SevenSegmentLabel;
 import java.awt.GridLayout;
+import java.time.LocalTime;
 
 /**
  *
@@ -16,6 +17,7 @@ import java.awt.GridLayout;
 public class ClockGUI extends javax.swing.JFrame {
 
     private Clock clock1;
+    private Clock clock2;
     /**
      * Creates new form ClockGUI
      */
@@ -24,8 +26,11 @@ public class ClockGUI extends javax.swing.JFrame {
         panelClocks.setLayout(new GridLayout(3,1));
         clock1 = new Clock();
         panelClocks.add(clock1);
+        clock2 = new Clock(LocalTime.now());
+        panelClocks.add(clock2);
         
         new Thread(clock1).start();
+        new Thread(clock2).start();
     }
 
     /**
