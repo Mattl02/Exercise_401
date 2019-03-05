@@ -1,19 +1,23 @@
 
 package bl;
 
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Matthias
  */
-public class Clock implements Runnable{
+public class Clock extends JPanel implements Runnable{
 
     private ArrayList<SevenSegmentLabel> labels = new ArrayList<>();
 
     public Clock() {
+        this.setLayout(new GridLayout(1,6));
+        
         labels.add(new SevenSegmentLabel(2));
         labels.add(new SevenSegmentLabel(3));
         labels.add(new SevenSegmentLabel(5));
@@ -21,6 +25,9 @@ public class Clock implements Runnable{
         labels.add(new SevenSegmentLabel(5));
         labels.add(new SevenSegmentLabel(6));
         
+        for (SevenSegmentLabel label : labels) {
+            this.add(label);
+        }
     }
 
     public ArrayList<SevenSegmentLabel> getLabels() {

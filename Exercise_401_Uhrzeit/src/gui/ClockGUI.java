@@ -21,11 +21,9 @@ public class ClockGUI extends javax.swing.JFrame {
      */
     public ClockGUI() {
         initComponents();
-        panelClocks.setLayout(new GridLayout(1,6));
+        panelClocks.setLayout(new GridLayout(3,1));
         clock1 = new Clock();
-        for (SevenSegmentLabel label : clock1.getLabels()) {
-            panelClocks.add(label);
-        }
+        panelClocks.add(clock1);
         
         new Thread(clock1).start();
     }
