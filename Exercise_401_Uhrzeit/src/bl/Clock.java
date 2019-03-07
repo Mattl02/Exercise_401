@@ -1,12 +1,13 @@
 
 package bl;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -18,7 +19,7 @@ public class Clock extends JPanel implements Runnable{
     private ArrayList<SevenSegmentLabel> labels = new ArrayList<>();
     private JPanel clockPanel;
 
-    public Clock() {
+    public Clock(String clockName) {
         this.clockPanel = new JPanel();
         clockPanel.setLayout(new GridLayout(1,6));
         labels.add(new SevenSegmentLabel(0));
@@ -33,10 +34,15 @@ public class Clock extends JPanel implements Runnable{
         for (SevenSegmentLabel label : labels) {
             clockPanel.add(label);
         }
+        
+        this.setLayout(new BorderLayout());
+        this.add(new JLabel(String.format("%-25s", clockName)), BorderLayout.WEST);
+        this.add(clockPanel, BorderLayout.CENTER);
     }
     
-    public Clock(LocalTime time){
-        this.setLayout(new GridLayout(1,6));
+    public Clock(String clockName, LocalTime time){
+        this.clockPanel = new JPanel();
+        clockPanel.setLayout(new GridLayout(1,6));
         labels.add(new SevenSegmentLabel(time.getHour()/10));
         labels.add(new SevenSegmentLabel(time.getHour()%10));
         labels.add(new SevenSegmentLabel(-1));
@@ -47,8 +53,12 @@ public class Clock extends JPanel implements Runnable{
         labels.add(new SevenSegmentLabel(time.getSecond()%10));
         
         for (SevenSegmentLabel label : labels) {
-            this.add(label);
+            clockPanel.add(label);
         }
+        
+        this.setLayout(new BorderLayout());
+        this.add(new JLabel(String.format("%-25s", clockName)), BorderLayout.WEST);
+        this.add(clockPanel, BorderLayout.CENTER);
     }
 
     public ArrayList<SevenSegmentLabel> getLabels() {

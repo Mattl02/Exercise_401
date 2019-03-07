@@ -6,10 +6,10 @@
 package gui;
 
 import bl.Clock;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.time.LocalTime;
-import javax.swing.JLabel;
+import java.time.ZoneId;
+import java.util.TimeZone;
 
 /**
  *
@@ -26,11 +26,11 @@ public class ClockGUI extends javax.swing.JFrame {
     public ClockGUI() {
         initComponents();
         panelClocks.setLayout(new GridLayout(3,1));
-        clock1 = new Clock();
+        clock1 = new Clock("Lokale Zeit", LocalTime.now());
         panelClocks.add(clock1);
-        clock2 = new Clock(LocalTime.now());
+        clock2 = new Clock("Sydney", LocalTime.now(ZoneId.of("Australia/Sydney")));
         panelClocks.add(clock2);
-        clock3 = new Clock(LocalTime.now());
+        clock3 = new Clock("Los Angeles", LocalTime.now(ZoneId.of("America/Los_Angeles")));
         panelClocks.add(clock3);
         
         new Thread(clock1).start();
