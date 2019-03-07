@@ -1,6 +1,7 @@
 
 package bl;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -15,19 +16,22 @@ import javax.swing.JPanel;
 public class Clock extends JPanel implements Runnable{
 
     private ArrayList<SevenSegmentLabel> labels = new ArrayList<>();
+    private JPanel clockPanel;
 
     public Clock() {
-        this.setLayout(new GridLayout(1,6));
-        
+        this.clockPanel = new JPanel();
+        clockPanel.setLayout(new GridLayout(1,6));
         labels.add(new SevenSegmentLabel(0));
         labels.add(new SevenSegmentLabel(0));
+        labels.add(new SevenSegmentLabel(-1));
         labels.add(new SevenSegmentLabel(0));
         labels.add(new SevenSegmentLabel(0));
+        labels.add(new SevenSegmentLabel(-1));
         labels.add(new SevenSegmentLabel(0));
         labels.add(new SevenSegmentLabel(0));
         
         for (SevenSegmentLabel label : labels) {
-            this.add(label);
+            clockPanel.add(label);
         }
     }
     
@@ -35,8 +39,10 @@ public class Clock extends JPanel implements Runnable{
         this.setLayout(new GridLayout(1,6));
         labels.add(new SevenSegmentLabel(time.getHour()/10));
         labels.add(new SevenSegmentLabel(time.getHour()%10));
+        labels.add(new SevenSegmentLabel(-1));
         labels.add(new SevenSegmentLabel(time.getMinute()/10));
         labels.add(new SevenSegmentLabel(time.getMinute()%10));
+        labels.add(new SevenSegmentLabel(-1));
         labels.add(new SevenSegmentLabel(time.getSecond()/10));
         labels.add(new SevenSegmentLabel(time.getSecond()%10));
         
@@ -58,14 +64,14 @@ public class Clock extends JPanel implements Runnable{
                 Logger.getLogger(Clock.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            if (labels.get(5).getNumber() == 9) {
-                labels.get(5).setNumber(0);
-                if (labels.get(4).getNumber() == 5) {
-                    labels.get(4).setNumber(0);
-                    if (labels.get(3).getNumber() == 9) {
-                        labels.get(3).setNumber(0);
-                        if (labels.get(2).getNumber() == 5) {
-                            labels.get(2).setNumber(0);
+            if (labels.get(7).getNumber() == 9) {
+                labels.get(7).setNumber(0);
+                if (labels.get(6).getNumber() == 5) {
+                    labels.get(6).setNumber(0);
+                    if (labels.get(4).getNumber() == 9) {
+                        labels.get(4).setNumber(0);
+                        if (labels.get(3).getNumber() == 5) {
+                            labels.get(3).setNumber(0);
                             if (labels.get(1).getNumber() == 9) {
                                 labels.get(1).setNumber(0);
 //                                if (labels.get(0).getNumber() == 2 && labels.get(1).getNumber() == 3) {
@@ -82,16 +88,16 @@ public class Clock extends JPanel implements Runnable{
                                 labels.get(1).setNumber(0);
                             }
                         } else {
-                            labels.get(2).setNumber(labels.get(2).getNumber() + 1);
+                            labels.get(3).setNumber(labels.get(3).getNumber() + 1);
                         }
                     } else {
-                        labels.get(3).setNumber(labels.get(3).getNumber() + 1);
+                        labels.get(4).setNumber(labels.get(4).getNumber() + 1);
                     }
                 } else {
-                    labels.get(4).setNumber(labels.get(4).getNumber() + 1);
+                    labels.get(6).setNumber(labels.get(6).getNumber() + 1);
                 }
             } else {
-                labels.get(5).setNumber(labels.get(5).getNumber() + 1);
+                labels.get(7).setNumber(labels.get(7).getNumber() + 1);
             }
         }
     }
