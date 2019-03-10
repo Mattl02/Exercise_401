@@ -43,6 +43,7 @@ public class Clock extends JPanel implements Runnable{
     public Clock(String clockName, LocalTime time){
         this.clockPanel = new JPanel();
         clockPanel.setLayout(new GridLayout(1,6));
+        // -1 -> ':'
         labels.add(new SevenSegmentLabel(time.getHour()/10));
         labels.add(new SevenSegmentLabel(time.getHour()%10));
         labels.add(new SevenSegmentLabel(-1));
