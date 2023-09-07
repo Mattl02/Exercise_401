@@ -1,2 +1,2 @@
 # Exercise_401
-Repository for Eercise_401_Uhrzeut
+Repository for Eercise_401_Uhrzeit
